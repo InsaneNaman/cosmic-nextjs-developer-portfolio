@@ -18,9 +18,11 @@ const IntroSection = ({ heading, subHeading, avatar, socials }) => {
           linkedin={socials?.metadata.linkedin}
         />
       </div>
-      <div className="w-[80px] h-[80px] lg:w-[186px] lg:h-[186px]">
-        <DeveloperAvatar src={avatar} />
-      </div>
+      {avatar && (
+        <div className="w-[80px] h-[80px] lg:w-[186px] lg:h-[186px]">
+          <DeveloperAvatar src={avatar} />
+        </div>
+      )}
     </section>
   )
 }
