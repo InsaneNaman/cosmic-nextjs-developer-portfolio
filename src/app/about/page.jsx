@@ -13,23 +13,23 @@ async function getData() {
 
 const AboutPage = async () => {
   const data = await getData()
-  const pageData = data.pageData
+  const { metadata, content } = data.pageData ?? {}
 
   return (
     <>
       <PageMeta
-        title={pageData?.metadata.meta_title}
-        description={pageData?.metadata.meta_description}
+        title={metadata?.meta_title}
+        description={metadata?.meta_description}
       />
       <section>
         <h1 className="text-2xl md:text-3xl mb-12 font-bold">
-          {pageData?.metadata.heading}
+          {metadata?.heading}
         </h1>
         <div className="flex flex-col md:flex-row-reverse justify-between">
-          {pageData.metadata.image && (
+          {metadata?.image && (
             <div className="relative max-w-[200px] md:max-w-sm mb-12">
               <Image
-                src={pageData.metadata.image?.imgix_url}
+                src={metadata?.image?.imgix_url}
                 alt="Developer avatar"
                 quality={60}
                 width={270}
@@ -47,14 +47,14 @@ const AboutPage = async () => {
             <div
               className="text-fore-primary mb-8 space-y-4"
               dangerouslySetInnerHTML={{
-                __html: sanitize(pageData?.content),
+                __html: sanitize(content),
               }}
             />
             <Socials
-              resume={pageData?.metadata.socials.metadata.resume.url}
-              email={pageData?.metadata.socials.metadata.email}
-              github={pageData?.metadata.socials.metadata.github}
-              linkedin={pageData?.metadata.socials.metadata.linkedin}
+              resume={metadata?.socials.metadata.resume.url}
+              email={metadata?.socials.metadata.email}
+              github={metadata?.socials.metadata.github}
+              linkedin={metadata?.socials.metadata.linkedin}
             />
           </div>
         </div>

@@ -24,28 +24,28 @@ const HomePage = async () => {
   const data = await getData()
   const allPosts = data.allPosts
   const allWorks = data.allWorks
-  const pageData = data.pageData
+  const { metadata } = data.pageData ?? {}
 
   return (
     <>
       <PageMeta
-        title={pageData?.metadata.meta_title}
-        description={pageData?.metadata.meta_title}
+        title={metadata?.meta_title}
+        description={metadata?.meta_description}
       />
       <IntroSection
-        avatar={pageData?.metadata.avatar?.imgix_url}
-        heading={pageData?.metadata.heading}
-        subHeading={pageData?.metadata.sub_heading}
-        socials={pageData?.metadata.socials}
+        avatar={metadata?.avatar?.imgix_url}
+        heading={metadata?.heading}
+        subHeading={metadata?.sub_heading}
+        socials={metadata?.socials}
       />
-      <AboutMeSection bodyText={pageData?.metadata.about} />
+      <AboutMeSection bodyText={metadata?.about} />
       <ToolboxSection />
       <WorksSection posts={allWorks} />
       <PostsSection posts={allPosts} />
       <ContactSection
-        heading={pageData?.metadata.contact_heading}
-        bodyText={pageData?.metadata.contact_text}
-        email={pageData?.metadata.socials.metadata.email}
+        heading={metadata?.contact_heading}
+        bodyText={metadata?.contact_text}
+        email={metadata?.socials.metadata.email}
       />
     </>
   )

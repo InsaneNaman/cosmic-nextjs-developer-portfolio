@@ -1,5 +1,5 @@
 import Socials from '@/components/Socials'
-import Image from "next/image"
+import DeveloperAvatar from '@/components/DeveloperAvatar'
 
 const IntroSection = ({ heading, subHeading, avatar, socials }) => {
   return (
@@ -18,21 +18,11 @@ const IntroSection = ({ heading, subHeading, avatar, socials }) => {
           linkedin={socials?.metadata.linkedin}
         />
       </div>
-      <div className="w-[80px] sm:w-[186px] relative mb-6 sm:mb-0 rounded-full">
-        <Image
-          src={avatar}
-          alt="Developer Avatar"
-          height={186}
-          width={186}
-          quality={60}
-          className="rounded-full"
-          style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
+      <div className="w-[80px] h-[80px] lg:w-[186px] lg:h-[186px]">
+        <DeveloperAvatar src={avatar} />
       </div>
     </section>
-  );
+  )
 }
 
 export default IntroSection
